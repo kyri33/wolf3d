@@ -12,6 +12,44 @@
 
 #include "wolf.h"
 
+int	get_key_event(int keycode, t_env *e)
+{
+	t_vect	old_dir;
+
+	if (keycode == 53)
+		exit(0);
+	else if (keycode == 126)
+	{
+		e->pos.x += e->dir.x * e->move_speed;
+		e->pos.y += e->dir.y * e->move_speed;
+	}
+	else if (keycode == 125)
+	{
+		e->pos.x -= e->dir.x * e->move_speed;
+		e->pos.y -= e->dir.y * e->move_speed;
+	}
+	else if (keycode == 123)
+	{
+		old_dir.x = e->dir.x;
+		e->dir.x = e->dir.x * cos(-1 * e->rot_speed) - e->dir.y * sin(e->rot_speed);
+		e->dir.y = old_dir.x * sin(-1 * e->rot_speed) + e->dir.y * cos(-1 * e->rot_speed);
+		old_dir.y = e->plane.x;
+		e->plane.x = e->plane.x * cos(-1 * e->rot_speed) - e->plane.y * sin(-1 * e->rot_speed);
+		e->plane.y = old_dir.y * sin(-1 * e->rot_speed) + e->plane.y * cos(-1 * e->rot_speed);
+	}
+	else if (keycode == 124)
+	{
+		old_dir.x = e->dir.x;
+		e->dir.x = e->dir.x * cos(e->rot_speed) - e->dir.y * sin(e->rot_speed);
+		e->dir.y = old_dir.x * sin(e->rot_speed) + e->dir.y * cos(e->rot_speed);
+		old_dir.y = e->plane.x;
+		e->plane.x = e->plane.x * cos(e->rot_speed) - e->plane.y * sin(e->rot_speed);
+		e->plane.y = old_dir.y * sin(e->rot_speed) + e->plane.y * cos(e->rot_speed);
+	}
+	game_loop(e);
+	return (1);
+}
+
 int	main(void)
 {
 	t_env	e;
@@ -22,6 +60,10 @@ int	main(void)
 		ft_putstr("Error reading map\n");
 	else
 	{
-		
+		init_vars(&e);
+		game_loop(&e);
+		mlx_key_hook(e.win, get_key_event, &e);
+		mlx_loop(e.mlx);
+		return (1);
 	}
 }

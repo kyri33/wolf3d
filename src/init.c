@@ -23,6 +23,6 @@ void    init_vars(t_env *e)
     e->dir.y = 0;
     e->plane.x = 0;
     e->plane.y = 0.66;
-    e->time = 0;
-    e->old_time = 0;
+    e->move_speed = 0.1;
+    e->rot_speed = 0.1;
 }

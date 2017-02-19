@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 14:23:43 by kioulian          #+#    #+#             */
-/*   Updated: 2017/02/19 10:52:23 by kioulian         ###   ########.fr       */
+/*   Updated: 2017/02/19 10:54:38 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int		main(void)
 	{
 		init_vars(&e);
 		game_loop(&e);
-		//mlx_key_hook(e.win, get_key_event, &e);
 		mlx_hook(e.win, 2, (1L << 0), get_key_event, &e);
 		mlx_hook(e.win, 17, 0L, quit_win, &e);
 		mlx_loop(e.mlx);

@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 15:27:22 by kioulian          #+#    #+#             */
-/*   Updated: 2016/11/13 16:38:15 by kioulian         ###   ########.fr       */
+/*   Updated: 2017/04/09 12:27:52 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	get_map(t_env *e)
 	{
 		x = 0;
 		x_i = 0;
-		while (x < MAP_W)
+		while (x < MAP_W && line[x_i])
 		{
 			e->map[y][x] = ft_atoi(&line[x_i]);
 			x++;

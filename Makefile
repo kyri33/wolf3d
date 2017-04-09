@@ -7,9 +7,14 @@ FLAGS = clang -Wall -Werror -Wextra -g3 -I includes -o
 all: $(NAME)
 
 $(NAME):
+	@make -C libft/ fclean && make -C libft/
 	@$(FLAGS) $(NAME) $(SRC) -lmlx -framework OpenGL -framework AppKit
 
-fclean:
+clean:
+	@make -C libft/ clean
+
+fclean: clean
+	@make -C libft/ fclean
 	@rm -f $(NAME)
 
 re: fclean all
